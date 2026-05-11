@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# delivery-system
 
-## Getting Started
+ECサイトのデリバリー管理システムです。  
+QAエンジニアとしてのテスト設計・自動化スキルを示すポートフォリオとして作成しました。
 
-First, run the development server:
+## 概要
+
+果物を販売するECサイトを題材に、意図的にバグを仕込んだアプリケーションに対して、テスト設計・Playwright E2E自動化・GitHub Actions CI組み込みまでを一貫して実施しています。
+
+## 使用技術
+
+| 技術 | 用途 |
+|------|------|
+| Next.js / TypeScript | フロントエンド・APIサーバー |
+| SQLite | データベース |
+| Playwright | E2Eテスト自動化 |
+| GitHub Actions | CI組み込み |
+
+## 意図的に仕込んだバグ
+
+| No | バグ名 | 概要 |
+|----|--------|------|
+| 1 | 上書きバグ | 追加注文すると既存の注文履歴が消える |
+| 2 | 境界値バグ | 3000円ちょうどで送料無料にならない |
+| 3 | flaky test | 意図的に不安定なテストを作成し安定化させる |
+
+## セットアップ
 
 ```bash
+git clone https://github.com/あなたのユーザー名/delivery-system.git
+cd delivery-system
+npm install
+npm run seed
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで http://localhost:3000/register を開いてください。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ドキュメント
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| ドキュメント | 内容 |
+|-------------|------|
+| [仕様書](docs/spec.md) | 機能仕様・バグ詳細 |
+| [テスト設計書](docs/test-design.md) | テスト観点・テストケース |
 
-## Learn More
+## 画面構成
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+/register      会員登録
+/login         ログイン
+/products      商品一覧
+/order-confirm 注文確認
+/order-history 注文履歴
+```
