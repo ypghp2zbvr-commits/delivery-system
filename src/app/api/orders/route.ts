@@ -13,10 +13,10 @@ export async function POST(req: NextRequest) {
   const arrivalDateStr = arrivalDate.toISOString().split('T')[0];
 
   // バグ仕込み：INSERTの前に既存の注文を削除してしまう
+  // 本来16,17行目は不要はコード
   db.prepare('DELETE FROM order_items WHERE order_id IN (SELECT id FROM orders WHERE user_id = ?)').run(userId);
   db.prepare('DELETE FROM orders WHERE user_id = ?').run(userId);
 
-  // 本来16,17行目は不要はコード
   const orderResult = db.prepare(
     'INSERT INTO orders (user_id, total_price, shipping_fee, arrival_date) VALUES (?, ?, ?, ?)'
   ).run(userId, totalPrice, shippingFee, arrivalDateStr);
