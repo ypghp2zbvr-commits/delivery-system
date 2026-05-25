@@ -45,7 +45,7 @@ export class RegisterPage extends BasePage {
 
     // 画面に遷移する
     async open() {
-        await super.goto('/register');
+        await this.goto('/register');
     }
     
 }
