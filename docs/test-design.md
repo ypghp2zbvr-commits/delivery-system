@@ -14,9 +14,9 @@
 | シナリオテスト | ユーザーの一連の操作を通しで確認 |
 
 ### テスト自動化方針
-- Playwright を使用したE2Eテスト
-- Page Object Model（POM）を導入し、保守性を高める
-- GitHub Actions でCIに組み込み、pushのたびに自動実行する
+- ✅ Playwright を使用したE2Eテスト
+- ✅ Page Object Model（POM）を導入し、保守性を高める
+- 📋 GitHub Actions でCIに組み込み、pushのたびに自動実行する
 
 ### 本テスト設計のスコープ
 

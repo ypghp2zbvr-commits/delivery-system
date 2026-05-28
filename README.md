@@ -5,16 +5,22 @@ QAエンジニアとしてのテスト設計・自動化スキルを示すポー
 
 ## 概要
 
-果物を販売するECサイトを題材に、意図的にバグを仕込んだアプリケーションに対して、テスト設計・Playwright E2E自動化・GitHub Actions CI組み込みまでを一貫して実施しています。
+果物を販売するECサイトを題材に、意図的にバグを仕込んだアプリケーションに対して、テスト設計・Playwright E2E自動化・GitHub Actions CI組み込みを進行中です。
 
 ## 使用技術
 
 | 技術 | 用途 |
-|------|------|
+| --- | --- |
 | Next.js / TypeScript | フロントエンド・APIサーバー |
 | SQLite | データベース |
 | Playwright | E2Eテスト自動化 |
-| GitHub Actions | CI組み込み |
+
+## Status
+
+- ✅ テスト設計書 / POM基盤 / helpers
+- ✅ 会員登録機能のE2E
+- 🚧 バグ検知テスト（OH-06 上書き、OC-04 境界値）、シナリオテスト
+- 📋 GitHub Actions CI、`webServer`設定
 
 ## 意図的に仕込んだバグ
 
