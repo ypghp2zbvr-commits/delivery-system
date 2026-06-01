@@ -63,11 +63,11 @@ export default function OrderConfirmPage() {
             </div>
             <div className="flex justify-between">
               <span>送料</span>
-              <span>{shippingFee === 0 ? '無料' : `¥${shippingFee}`}</span>
+              <span data-testid="shipping-fee">{shippingFee === 0 ? '無料' : `¥${shippingFee}`}</span>
             </div>
             <div className="flex justify-between font-bold text-lg border-t pt-2">
               <span>合計</span>
-              <span>¥{total.toLocaleString()}</span>
+              <span data-testid="total-price">¥{total.toLocaleString()}</span>
             </div>
           </div>
         </div>

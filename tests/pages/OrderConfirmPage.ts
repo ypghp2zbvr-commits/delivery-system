@@ -8,16 +8,12 @@ export class OrderConfirmPage extends BasePage {
 
     // 送料の表示を取得する
     async getShippingFee(){
-        const row = this.page.locator('div', { hasText: '送料' });
-        const fee = await row.locator('span').nth(1).textContent();
-        return fee;
+        return await this.page.locator('[data-testid="shipping-fee"]').textContent();
     }
 
     // 合計金額の表示を取得する
     async getTotalPrice(){
-        const totalRow = this.page.locator('div', { hasText: '合計' });
-        const total = await totalRow.locator('span').nth(1).textContent();
-        return total;
+        return await this.page.locator('[data-testid="total-price"]').textContent();
     }
 
     // 注文するボタンを押下
