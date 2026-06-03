@@ -17,4 +17,9 @@ export class OrderHistoryPage extends BasePage {
         await this.goto('/order-history');
     }
 
+    // 商品一覧に戻るボタン押下
+    async backToProducts(){
+        await this.page.locator('button',{hasText: '商品一覧に戻る'}).click();
+    }
+
 }
