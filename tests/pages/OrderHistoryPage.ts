@@ -6,10 +6,9 @@ export class OrderHistoryPage extends BasePage {
         super(page);
     }
 
-    // 注文履歴の件数を取得する
-    async getOrderHistoryCount(){
-        const count = await this.page.locator('button:has-text("キャンセル")').count();
-        return count;
+    // 注文履歴の要素を返す
+    orderHistoryItems(){
+        return this.page.locator('button:has-text("キャンセル")');
     }
 
     // 画面に遷移する

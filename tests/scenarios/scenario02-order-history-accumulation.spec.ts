@@ -53,8 +53,7 @@ test('注文履歴累積確認', async ({ page }) => {
 
     // 注文履歴の確認
     const orderhistoryPage = new OrderHistoryPage(page);
-    const orderHistoryCount = await orderhistoryPage.getOrderHistoryCount();
-    expect(orderHistoryCount).toBe(1);
+    await expect(orderhistoryPage.orderHistoryItems()).toHaveCount(1);
 
     // 商品一覧画面に戻る
     await orderhistoryPage.backToProducts();
@@ -71,7 +70,6 @@ test('注文履歴累積確認', async ({ page }) => {
     await expect(page).toHaveURL('/order-history');
 
     // 注文履歴に2つデータが存在していることを確認する
-    const orderHistoryCount2 = await orderhistoryPage.getOrderHistoryCount();
-    expect(orderHistoryCount2).toBe(2);
+    await expect(orderhistoryPage.orderHistoryItems()).toHaveCount(2);
 
 });
