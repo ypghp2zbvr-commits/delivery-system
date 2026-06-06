@@ -43,10 +43,12 @@ export class RegisterPage extends BasePage {
         return await this.page.textContent('.text-red-500');
     }
 
-    // 画面に遷移する
+    // 画面に遷移するまで待つ
     async open() {
-        await this.goto('/register');
-    }
-    
+    await this.goto('/register');
+    await this.page.locator('input[name="name"]').waitFor();
 }
+
+}
+
 
