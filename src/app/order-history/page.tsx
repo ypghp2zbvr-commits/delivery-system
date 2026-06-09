@@ -84,7 +84,7 @@ export default function OrderHistoryPage() {
             <div className="mt-4 space-y-1">
               <div className="flex justify-between text-sm">
                 <span>送料</span>
-                <span>{order.shipping_fee === 0 ? '無料' : `¥${order.shipping_fee}`}</span>
+                <span data-testid="shipping-fee">{order.shipping_fee === 0 ? '無料' : `¥${order.shipping_fee}`}</span>
               </div>
               <div className="flex justify-between font-bold">
                 <span>合計</span>

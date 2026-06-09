@@ -21,4 +21,8 @@ export class OrderHistoryPage extends BasePage {
         await this.page.locator('button',{hasText: '商品一覧に戻る'}).click();
     }
 
+    // 送料を取得する
+    orderShippingFee(){
+        return this.page.locator('[data-testid="shipping-fee"]').first();
+    }
 }

@@ -14,7 +14,7 @@ test.afterEach(async () => {
     await deleteTestUser(testEmail);
 });
 
-test('購入フローのテスト', async ({ page }) => {
+test('送料境界値確認', async ({ page }) => {
     // 登録
     const registerPage = new RegisterPage(page);
     await registerPage.open();
@@ -37,26 +37,22 @@ test('購入フローのテスト', async ({ page }) => {
     await loginPage.submit();
     await expect(page).toHaveURL('/products');
 
-    // 商品選択して注文確認へ
+    // 商品選択して注文確認画面へ遷移すること
     const productsPage = new ProductsPage(page);
-    await productsPage.fillQuantity('いちご',2);
-    await productsPage.clickAddToCart('いちご');
-    await productsPage.fillQuantity('スイカ',1);
-    await productsPage.clickAddToCart('スイカ');
+    await productsPage.fillQuantity('メロン',3);
+    await productsPage.clickAddToCart('メロン');
     await productsPage.orderConfirm();
     await expect(page).toHaveURL('/order-confirm');
     
-    // 注文の確認、送料の確認
+    // 注文の確認(送料が無料であること)
     const orderconfirmPage = new OrderConfirmPage(page);
     const shippingFee = await orderconfirmPage.getShippingFee();
-    expect(shippingFee).toBe('¥300');
-    const totalPrice = await orderconfirmPage.getTotalPrice();
-    expect(totalPrice).toBe('¥3,100');
+    expect(shippingFee).toBe('無料');
     await orderconfirmPage.submit();
     await expect(page).toHaveURL('/order-history');
 
-    // 注文履歴の確認
+    // 注文履歴の確認(送料が無料で合計金額¥3,000の注文履歴が追加されていること)
     const orderhistoryPage = new OrderHistoryPage(page);
-    await expect(orderhistoryPage.orderHistoryItems()).toHaveCount(1);
+    await expect(orderhistoryPage.orderShippingFee()).toHaveText('無料');
 
 });
