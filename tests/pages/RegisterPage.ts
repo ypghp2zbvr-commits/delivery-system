@@ -38,9 +38,9 @@ export class RegisterPage extends BasePage {
         await this.page.click('button:has-text("登録する")');
     }
 
-    // エラーメッセージを取得する
-    async getErrorMessage(){
-        return await this.page.textContent('.text-red-500');
+    // エラーメッセージを返す
+    errorMessage(){
+        return this.page.locator('.text-red-500');
     }
 
     // 画面に遷移するまで待つ
@@ -50,5 +50,3 @@ export class RegisterPage extends BasePage {
 }
 
 }
-
-

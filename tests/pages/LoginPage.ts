@@ -36,4 +36,9 @@ export class LoginPage extends BasePage {
         await this.goto('/login');
     }
 
+    // 会員登録リンクを押下する
+    async clickRegisterLink(){
+        await this.page.getByRole('link', { name: '会員登録'}).click();
+    }
+
 }
