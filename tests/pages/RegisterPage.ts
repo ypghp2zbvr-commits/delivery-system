@@ -1,5 +1,4 @@
-// RegisterPage.ts  自分で出力(サジェスト機能とさっき出力したコードとWebサイトの内容参考に作成)
-import { Page } from '@playwright/test';
+import { Page, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
 
 export class RegisterPage extends BasePage {
@@ -7,25 +6,31 @@ export class RegisterPage extends BasePage {
     super(page);
    }
 
-   // まずは個別で定義する
+   // 個別で入力、入力されたことを確認
     async fillName(name: string){
         await this.page.fill('input[name="name"]', name);
+        await expect(this.page.locator('input=[name="name"]')).toHaveValue(name);
     }
     async fillAddress(address: string){
         await this.page.fill('input[name="address"]', address);
+        await expect(this.page.locator('input=[name="address"]')).toHaveValue(address);
     }
     async fillPhone(phone: string){
         await this.page.fill('input[name="phone"]', phone);
+        await expect(this.page.locator('input=[name="phone"]')).toHaveValue(phone);
     }
     async fillEmail(email: string){
         await this.page.fill('input[name="email"]', email);
+        await expect(this.page.locator('input=[name="email"]')).toHaveValue(email);
     }
     async fillPassword(password: string){
         await this.page.fill('input[name="password"]', password);
+        await expect(this.page.locator('input=[name="password"]')).toHaveValue(password);
     }
 
-    // ここでまとめて定義する
+    // まとめて定義する。Passwordテキストボックスが表示されるまで待つ
     async fillRegistrationForm(data: {name: string, address: string, phone: string, email: string, password: string}){
+        await expect(this.page.locator("input[name='password']")).toBeEnabled();
         await this.fillName(data.name);
         await this.fillAddress(data.address);
         await this.fillPhone(data.phone);
@@ -43,10 +48,10 @@ export class RegisterPage extends BasePage {
         return this.page.locator('.text-red-500');
     }
 
-    // 画面に遷移するまで待つ
+    // 画面に遷移する
     async open() {
-    await this.goto('/register');
-    await this.page.locator('input[name="name"]').waitFor();
-}
+        await this.goto('/register');
+    }
+
 
 }
