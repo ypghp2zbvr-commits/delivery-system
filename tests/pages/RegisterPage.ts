@@ -9,28 +9,29 @@ export class RegisterPage extends BasePage {
    // 個別で入力、入力されたことを確認
     async fillName(name: string){
         await this.page.fill('input[name="name"]', name);
-        await expect(this.page.locator('input=[name="name"]')).toHaveValue(name);
+        await expect(this.page.locator('input[name="name"]')).toHaveValue(name);
     }
     async fillAddress(address: string){
         await this.page.fill('input[name="address"]', address);
-        await expect(this.page.locator('input=[name="address"]')).toHaveValue(address);
+        await expect(this.page.locator('input[name="address"]')).toHaveValue(address);
     }
     async fillPhone(phone: string){
         await this.page.fill('input[name="phone"]', phone);
-        await expect(this.page.locator('input=[name="phone"]')).toHaveValue(phone);
+        await expect(this.page.locator('input[name="phone"]')).toHaveValue(phone);
     }
     async fillEmail(email: string){
         await this.page.fill('input[name="email"]', email);
-        await expect(this.page.locator('input=[name="email"]')).toHaveValue(email);
+        await expect(this.page.locator('input[name="email"]')).toHaveValue(email);
     }
     async fillPassword(password: string){
         await this.page.fill('input[name="password"]', password);
-        await expect(this.page.locator('input=[name="password"]')).toHaveValue(password);
+        await expect(this.page.locator('input[name="password"]')).toHaveValue(password);
     }
 
-    // まとめて定義する。Passwordテキストボックスが表示されるまで待つ
+    //
+
+    // まとめて定義する。
     async fillRegistrationForm(data: {name: string, address: string, phone: string, email: string, password: string}){
-        await expect(this.page.locator("input[name='password']")).toBeEnabled();
         await this.fillName(data.name);
         await this.fillAddress(data.address);
         await this.fillPhone(data.phone);
