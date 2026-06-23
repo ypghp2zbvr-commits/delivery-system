@@ -39,7 +39,7 @@ test('送料境界値確認', async ({ page }) => {
 
     // 商品選択して注文確認画面へ遷移すること
     const productsPage = new ProductsPage(page);
-    await productsPage.fillQuantity('メロン',3);
+    await productsPage.fillQuantity('メロン',2);
     await productsPage.clickAddToCart('メロン');
     await productsPage.orderConfirm();
     await expect(page).toHaveURL('/order-confirm');
